@@ -9,7 +9,15 @@
       class="row justify-center items-center full-width"
       style="height: 94.6vh"
     >
-      <q-img src="~assets/adLogo.svg" width="350px" spinner-color="primary" />
+      <div class="flex flex-center column">
+        <q-img
+          class="q-mb-md"
+          src="~assets/adLogo.svg"
+          width="350px"
+          spinner-color="primary"
+        />
+        <p class="text-h4 text-secondary">AD Juara</p>
+      </div>
       <div class="col-6 q-pa-md row items-center justify-center full-height">
         <q-card class="shadow-0 col-8">
           <q-card-section style="padding: 0px" class="text-black">
@@ -81,12 +89,15 @@
 
     <!-- Mobile -->
     <div v-if="$q.platform.is.mobile" class="col flex flex-center">
-      <q-img
-        class="q-mb-md"
-        src="~assets/adLogo.svg"
-        width="200px"
-        spinner-color="primary"
-      />
+      <div class="flex flex-center column">
+        <q-img
+          class="q-mb-md"
+          src="~assets/adLogo.svg"
+          width="200px"
+          spinner-color="primary"
+        />
+        <p class="text-h4 text-secondary">AD Juara</p>
+      </div>
       <div style="width: 95vw">
         <p class="text-h5 q-mx-md primary" style="">Entrar</p>
         <div class="row items-center justify-center q-px-sm q-pb-sm">
