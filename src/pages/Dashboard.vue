@@ -2,7 +2,7 @@
   <q-page class="flex flex-center">
     <q-card v-if="iswebserviceok" flat bordered>
       <q-card-section>
-        <div class="text-h6">Info - Result from Webservice</div>
+        <div class="text-h6">Conexão - WiFi</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import WebService from 'src/services/WebService'
+// import WebService from 'src/services/WebService'
 
 export default ({
   name: 'IndexPage',
@@ -32,19 +32,7 @@ export default ({
     }
   },
   mounted () {
-    console.log('Info mounted')
-    const ws = new WebService()
-    ws.getInfo()
-      .then((result) => {
-        console.log(result)
-        this.heap = result.data.heap
-        this.ssid = result.data.ssid
-        this.iswebserviceok = true
-      })
-      .catch((error) => {
-        console.error(error)
-        this.iswebserviceok = false
-      })
+    // const ws = new WebService()
   }
 })
 </script>

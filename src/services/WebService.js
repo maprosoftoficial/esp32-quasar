@@ -1,19 +1,45 @@
 /* eslint-disable */
-import axios from 'axios'
+import { Notify } from 'quasar'
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
 
 export default class WebService {
-
-
-    // We retrieve the info from the ESP32
-    async getInfo() {
-        console.log("getInfo")
-        return await axios.get("/service/info")
+    async showNotification (message, type) {
+        await Notify.create({
+            message,
+            type,
+            position: 'top'
+        })
     }
 
-    // loads html from Wordpress
-    async getWordpressPost() {
-        return await axios.get( "https://pschatzmann.ch/wp-json/wp/v2/posts/1323")
+    async signIn(email, password) {
+        const auth = getAuth()
+        await signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+            const user = userCredential.user
+            this.showNotification('Bem-vindo!', 'positive')
+            localStorage.setItem('user', JSON.stringify(user))
+            })
+            .catch((error) => {
+                // console.log('ERRO', error.code)
+                if (error.code === 'auth/user-not-found') {
+                    this.showNotification('Usuário não cadastrado! Entre em contato com o administrador', 'negative')
+                } else {
+                    this.showNotification('Email e/ou senha inválidos', 'negative')
+                }
+            })
+    }
+
+    async signOut () {
+      const auth = getAuth()
+      await signOut(auth)
+        .then(() => {
+          localStorage.clear()
+        })
+          .catch(() => {
+            this.showNotification('Erro ao desconectar', 'negative')
+            //   console.log(error)
+        })
     }
 
 }
