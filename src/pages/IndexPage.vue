@@ -20,10 +20,9 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
 import WebService from 'src/services/WebService'
 
-export default defineComponent({
+export default ({
   name: 'IndexPage',
   data () {
     return {
